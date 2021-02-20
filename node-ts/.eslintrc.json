@@ -30,6 +30,11 @@
             {
                 "ts": "never"
             }
-        ]
+        ],
+        "max-len": "off",
+        "object-curly-newline": "off",
+        "no-unused-vars": "warn",
+        "consistent-return": "off",
+        "arrow-body-style": "off"
     }
 }
