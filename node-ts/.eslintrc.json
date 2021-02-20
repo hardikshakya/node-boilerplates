@@ -35,6 +35,12 @@
         "object-curly-newline": "off",
         "no-unused-vars": "warn",
         "consistent-return": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": ["**/*.test.ts", "**/*.spec.ts"]
+            }
+        ]
     }
 }
