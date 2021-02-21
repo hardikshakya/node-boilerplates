@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit';
 
 import routes from './common/routes';
 import { HttpStatus } from './common/constants';
+import { logger, failed } from './common/helper';
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -41,12 +42,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 // eslint-disable-next-line no-unused-vars
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
-  return res.status(error.statusCode || HttpStatus.INTERNAL_SERVER_ERROR).json({
-    status: false,
-    message: error.message || '',
-    data: null,
-    error: error.data || {},
-  });
+  logger.error(`message - ${error.message}, stack trace - ${error.stack}`);
+  return failed(res, error.statusCode, error.message, error.data);
 });
 
 export default app;

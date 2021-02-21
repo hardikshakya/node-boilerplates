@@ -49,8 +49,9 @@
     "express-rate-limit": "^5.2.6",
     "fluent-json-schema": "^2.0.3",
     "helmet": "^4.4.1",
-    "morgan": "^1.10.0"
-    
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
   },
   "husky": {
     "hooks": {

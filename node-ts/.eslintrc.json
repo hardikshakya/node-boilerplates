@@ -41,6 +41,7 @@
             {
                 "devDependencies": ["**/*.test.ts", "**/*.spec.ts"]
             }
-        ]
+        ],
+        "import/prefer-default-export": "off"
     }
 }
