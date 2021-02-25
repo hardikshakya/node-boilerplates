@@ -27,6 +27,10 @@ export default function loadEnv(): void {
         'NODE_ENV',
         S.string().enum([ENV.DEV, ENV.TEST, ENV.PROD]).required()
       )
-      .prop('PORT', S.string().required()),
+      .prop('PORT', S.string().required())
+      .prop('DB_NAME', S.string().required())
+      .prop('DB_USER', S.string().required())
+      .prop('DB_PASSWORD', S.string().required())
+      .prop('DB_HOST', S.string().required()),
   });
 }
