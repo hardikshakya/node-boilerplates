@@ -17,13 +17,7 @@
     ],
     "rules": {
         "linebreak-style": "off",
-        "comma-dangle": [
-            "error",
-            {
-                "arrays": "always-multiline",
-                "objects": "always-multiline"
-            }
-        ],
+        "comma-dangle": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
