@@ -8,5 +8,19 @@ import app from './app';
 const port = process.env.PORT;
 
 // Start server
-// eslint-disable-next-line no-console
-app.listen(port, () => console.log(`**** Server is listening on port ${port} ****`));
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`**** Server is listening on port ${port} ****`);
+});
+
+declare global {
+  // eslint-disable-next-line no-unused-vars
+  namespace Express {
+    export interface Request {
+      authUserData: any;
+    }
+    export interface Response {
+      authUserData: any;
+    }
+  }
+}
