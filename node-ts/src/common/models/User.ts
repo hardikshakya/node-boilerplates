@@ -1,7 +1,18 @@
-import { Model, DataTypes, Optional } from 'sequelize';
+import {
+  Model,
+  DataTypes,
+  Optional,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyHasAssociationMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  Association,
+} from 'sequelize';
 
 import { sequelize } from '../config/database';
 import { logger } from '../helper';
+import { Post } from './Post';
 
 // Attributes in User Add/SignUp payload
 export interface UserAddModel {
@@ -33,6 +44,16 @@ export class User
   public password!: string;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  public getPosts!: HasManyGetAssociationsMixin<Post>;
+  public addPost!: HasManyAddAssociationMixin<Post, number>;
+  public hasPost!: HasManyHasAssociationMixin<Post, number>;
+  public countPosts!: HasManyCountAssociationsMixin;
+  public createPost!: HasManyCreateAssociationMixin<Post>;
+
+  public static associations: {
+    posts: Association<User, Post>;
+  };
 }
 
 User.init(
@@ -72,5 +93,12 @@ User.init(
     timestamps: true,
   }
 );
+
+// Here we associate which actually populates out pre-declared `association` static and other methods.
+User.hasMany(Post, {
+  sourceKey: 'id',
+  foreignKey: 'postedBy',
+  as: 'posts', // this determines the name in `associations`!
+});
 
 User.sync().then(() => logger.info('User table synced.'));
