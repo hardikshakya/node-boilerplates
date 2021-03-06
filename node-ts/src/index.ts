@@ -1,9 +1,5 @@
-// Load env vars
-import loadEnv from './common/config/env';
-
-loadEnv();
-// eslint-disable-next-line import/first
 import app from './app';
+import { User } from './common/models';
 
 const port = process.env.PORT;
 
@@ -17,10 +13,10 @@ declare global {
   // eslint-disable-next-line no-unused-vars
   namespace Express {
     export interface Request {
-      authUserData: any;
+      authUserData: User;
     }
     export interface Response {
-      authUserData: any;
+      authUserData: User;
     }
   }
 }

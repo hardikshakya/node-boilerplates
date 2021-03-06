@@ -1,8 +1,13 @@
+/* eslint-disable import/first */
 import express, { Application, Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
+
+import loadEnv from './common/config/env';
+// Load env vars
+loadEnv();
 
 import routes from './common/routes';
 import { HttpStatus } from './common/constants';
